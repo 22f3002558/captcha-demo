@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Captcha Solver</title>
+    <script>
+        async function solveCaptcha() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const imageUrl = urlParams.get('url');
+            if (imageUrl) {
+                const response = await fetch('https://api.example.com/solve?image=' + encodeURIComponent(imageUrl));
+                const data = await response.json();
+                document.getElementById('solution').innerText = data.solution;
+            } else {
+                document.getElementById('solution').innerText = 'No captcha image URL provided.';
+            }
+        }
+        window.onload = solveCaptcha;
+    </script>
+</head>
+<body>
+    <h1>Captcha Solver</h1>
+    <div id="solution">Loading...</div>
+</body>
+</html>
