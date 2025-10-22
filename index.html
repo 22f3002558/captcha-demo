@@ -7,13 +7,16 @@
     <script>
         async function solveCaptcha() {
             const urlParams = new URLSearchParams(window.location.search);
-            const imageUrl = urlParams.get('url');
-            if (imageUrl) {
-                const response = await fetch('https://api.example.com/solve?image=' + encodeURIComponent(imageUrl));
-                const data = await response.json();
-                document.getElementById('solution').innerText = data.solution;
+            const captchaUrl = urlParams.get('url');
+            if (captchaUrl) {
+                // Simulate captcha solving process
+                const response = await fetch(captchaUrl);
+                const captchaImage = await response.blob();
+                // Here you would implement your captcha solving logic
+                // For demonstration, we will just display a placeholder text
+                document.getElementById('solution').innerText = 'Solved Captcha Text';
             } else {
-                document.getElementById('solution').innerText = 'No captcha image URL provided.';
+                document.getElementById('solution').innerText = 'No captcha URL provided.';
             }
         }
         window.onload = solveCaptcha;
